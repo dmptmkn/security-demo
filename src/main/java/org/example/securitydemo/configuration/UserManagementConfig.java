@@ -19,7 +19,7 @@ public class UserManagementConfig {
     UserDetails userDetails = User.builder()
         .username("John")
         .password("1234")
-        .authorities("read")
+        .authorities("write")
         .build();
     userDetailsService.createUser(userDetails);
 

@@ -12,7 +12,6 @@ public class WebAuthorizationConfig {
   @Bean
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http.httpBasic(Customizer.withDefaults());
-
     http.authorizeHttpRequests(
         customizer -> customizer.anyRequest().authenticated()
     );
