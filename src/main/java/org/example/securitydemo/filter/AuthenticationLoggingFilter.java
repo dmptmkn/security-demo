@@ -6,23 +6,21 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-public class RequestValidationFilter implements Filter {
+public class AuthenticationLoggingFilter implements Filter {
+
+  private final Logger logger = Logger.getLogger(AuthenticationLoggingFilter.class.getName());
 
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
       FilterChain filterChain) throws IOException, ServletException {
     HttpServletRequest request = (HttpServletRequest) servletRequest;
-    HttpServletResponse response = (HttpServletResponse) servletResponse;
 
     String requestId = request.getHeader("Request-Id");
-    if (requestId == null || requestId.isBlank()) {
-      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-      return;
-    }
+    logger.info("Successfully authenticated request with id %s".formatted(requestId));
 
-    filterChain.doFilter(request, response);
+    filterChain.doFilter(servletRequest, servletResponse);
   }
 }
