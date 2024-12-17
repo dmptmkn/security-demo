@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -14,6 +16,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class UserManagementConfig {
 
+  //Basic UserDetailsService implementation
 //  @Bean
 //  public UserDetailsService userDetailsService() {
 //    InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
@@ -35,6 +38,7 @@ public class UserManagementConfig {
 //    return userDetailsService;
 //  }
 
+  //Custom UserDetailsService implementation
   @Bean
   public UserDetailsService userDetailsService() {
     User user = new User("Ivan", "1234", "read");
@@ -44,6 +48,6 @@ public class UserManagementConfig {
   @Bean
   public PasswordEncoder passwordEncoder() {
     return NoOpPasswordEncoder.getInstance();
+//    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
   }
-
 }

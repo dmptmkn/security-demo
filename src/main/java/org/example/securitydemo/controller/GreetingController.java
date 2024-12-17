@@ -14,7 +14,6 @@ public class GreetingController {
   @GetMapping
   public String greet() {
     SecurityContext context = SecurityContextHolder.getContext();
-
     return "Hello, %s!".formatted(context.getAuthentication().getName());
   }
 }
