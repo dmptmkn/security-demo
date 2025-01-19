@@ -11,7 +11,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class StaticKeyAuthenticationFilter implements Filter {
 
   @Value("${authorization.key}")
