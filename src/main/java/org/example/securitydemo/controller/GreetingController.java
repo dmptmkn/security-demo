@@ -30,8 +30,13 @@ public class GreetingController {
     return "Hello, %s! Your CSRF token is correct".formatted(context.getAuthentication().getName());
   }
 
-  @GetMapping("/secure")
-  public String secureGet() {
+  @GetMapping("/real")
+  public String secureGreetRead() {
     return "Hello, %s".formatted(nameService.getRealName());
+  }
+
+  @GetMapping("/fake")
+  public String secureGreetWrite() {
+    return "Hello, %s".formatted(nameService.getFakeName());
   }
 }
